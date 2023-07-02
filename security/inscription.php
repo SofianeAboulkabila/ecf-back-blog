@@ -73,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $mail->Host       = 'smtp.office365.com';
                 $mail->SMTPAuth   = true;
                 $mail->Username   = 'sofiane.aboulkabila@outlook.com';
-                $mail->Password   = '159357Abk';
+                $mail->Password   = '';
                 $mail->SMTPSecure = 'STARTTLS';
                 $mail->Port       = 587;
 
@@ -148,7 +148,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <br>
             <div class="input-group">
                 <label for="username">Nom d'utilisateur :</label>
-                <input type="text" id="username" name="username" required class="input-field" value="<?php echo $username; ?>">
+                <input type="text" id="username" name="username" required class="input-field"
+                    value="<?php echo $username; ?>">
             </div>
             <div class="input-group">
                 <label for="email">Email :</label>
