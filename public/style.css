@@ -1,0 +1,516 @@
+/* PARAMATRES GENERAUX */
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    background: rgb(173, 172, 172);
+}
+
+img {
+    max-width: 100%;
+}
+
+/* NAVBAR */
+
+header {
+    background-color: #494848;
+    padding: 10px;
+    font-size: 1.5rem;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo {
+    order: 1;
+    padding: 20px 30px;
+    background-color: rgb(199, 104, 27);
+    border: 5px solid rgb(255, 0, 0);
+    border-radius: 15px;
+}
+
+.nav-logo a {
+    color: rgb(0, 0, 0);
+    font-weight: bolder;
+}
+
+.nav-links {
+    order: 2;
+}
+
+.nav-auth {
+    order: 3;
+    margin: 0 20px;
+}
+
+.nav-links a {
+    margin: 20px;
+}
+
+.nav-auth a,
+.nav-links a {
+    color: rgb(255, 255, 255);
+    text-transform: uppercase;
+}
+
+/* Styles spécifiques pour la version responsive */
+
+@media (max-width: 600px) {
+    .navbar {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .nav-links {
+        order: 2;
+        margin: 20px 0;
+    }
+
+    .nav-auth {
+        order: 3;
+    }
+}
+
+.notice {
+    padding: 40px;
+    background-color: #a18006b3;
+    text-align: center;
+    font-weight: 700;
+}
+
+.notice-content {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.notice h2 {
+    font-size: 30px;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+.notice p {
+    font-size: 2em;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    color: #000000;
+}
+
+.notice ul {
+    list-style-type: disc;
+    text-align: left;
+    margin-bottom: 30px;
+    padding-left: 20px;
+}
+
+.notice li {
+    margin-bottom: 10px;
+    color: rgb(255, 255, 255)
+}
+
+.notice p:last-child {
+    margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+    .notice-content {
+        padding: 20px;
+    }
+
+    .notice h2 {
+        font-size: 24px;
+    }
+
+    .notice p {
+        font-size: 16px;
+    }
+
+    .notice ul {
+        font-size: 16px;
+    }
+}
+
+
+/* FORM */
+
+.container {
+    width: 300px;
+    margin: 0 auto;
+    padding-top: 100px;
+}
+
+form {
+    background: #f4f4f4;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.1);
+}
+
+.form-style-none {
+    background: none;
+    border: none;
+    box-shadow: none;
+}
+
+
+form h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid black;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.input-group input[type="text"],
+.input-group input[type="password"],
+.input-group input[type="email"] {
+    width: 90%;
+    padding: 8px;
+    border: 1px solid #ccc;
+}
+
+.input-group a {
+    font-size: 1.5rem;
+    color: red;
+}
+
+.input-group.checkbox-group {
+    display: flex;
+    align-items: center;
+}
+
+.input-group.checkbox-group label {
+    margin-left: 10px;
+    margin-bottom: 0;
+}
+
+.btn {
+    background: #4CAF50;
+    color: #fff;
+    padding: 8px 12px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+.btn:hover {
+    background: #45a049;
+}
+
+.input_error {
+    border: 1px solid #ff0000 !important;
+}
+
+.input_correct {
+    border: 1px solid #00ff00 !important;
+}
+
+.error_message {
+    color: red;
+    font-size: 0.8rem;
+    padding: 10px;
+    background-color: #ffebee;
+    border: 1px solid red;
+    border-radius: 3px;
+    height: 20px;
+    width: auto !important;
+}
+
+/* ENVOI EMAIL */
+.email-send {
+    background-color: #668baf;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.233);
+}
+
+.container-email {
+    background-color: #45a098;
+    max-width: 500px;
+    margin: 10em auto;
+    padding: 20px;
+    border-radius: 25px;
+}
+
+.email-send p {
+    margin: 10px 0;
+    font-size: 1.2em;
+    font-weight: 700;
+    color: rgb(0, 0, 0);
+    line-height: 1.5;
+}
+
+/* ARTRICLES BLOG */
+
+/* CSS pour les articles sous forme de cartes */
+
+.article-container {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.article-card {
+    border: 3px solid #ccc;
+    padding: 20px;
+    margin: 20px;
+    width: 350px;
+    transition: all 0.3s ease-in;
+}
+
+.article-card:hover {
+    box-shadow: 1px 1px 20px 2px black;
+    transform: scale(1.015);
+    transition: all 0.3s ease-out;
+}
+
+
+h2 {
+    text-align: center;
+    font-size: 24px;
+    padding: 10px;
+    border: 1px solid #000;
+}
+
+.article-card p {
+    font-size: 18px;
+    line-height: 1.6;
+    text-align: center;
+    padding: 20px;
+    margin: 20px;
+    background: #a39e9e;
+    color: gainsboro;
+    border-bottom: 1px solid black;
+}
+
+.article-card p:first-child {
+    margin-top: 0;
+}
+
+.article-card p:last-child {
+    margin-bottom: 0;
+}
+
+.article-card img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.comment-container {
+    display: none;
+    background-color: #f5f5f5;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.comment {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+}
+
+.like-history-container {
+    display: none;
+    background-color: #f5f5f5;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.like-history-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.like-history-list li {
+    margin-bottom: 5px;
+}
+
+
+.article-actions {
+    margin-top: 10px;
+}
+
+.like-button,
+.comment-button,
+.like-history-button {
+    padding: 5px 10px;
+    margin-right: 5px;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+}
+
+
+.like-comment-button {
+    padding: 5px 10px;
+    margin-right: 5px;
+    border: none;
+    background: #186703;
+    color: #fff;
+    cursor: pointer;
+}
+
+.liked-button,
+.liked-comment-button {
+    padding: 5px 10px;
+    margin-right: 5px;
+    border: none;
+    background-color: #ff7b08;
+    cursor: pointer;
+    color: aliceblue;
+}
+
+.like-history-button {
+    background-color: #ae2b2b;
+
+    margin-top: 10px;
+}
+
+.comment-button {
+    background-color: rgb(20, 125, 125);
+    margin-left: 20px;
+}
+
+.like-button {
+    background-color: rgb(11, 106, 11);
+}
+
+.like-button:hover,
+.comment-button:hover,
+.like-history-button:hover {
+    opacity: 0.8;
+}
+
+.comment p {
+    margin: 10px 0;
+    font-size: 14px;
+    color: #333;
+    font-weight: bolder;
+}
+
+.comment p:first-child {
+    font-weight: bold;
+}
+
+.comment p:nth-child(2) {
+    color: #fff;
+}
+
+.like-history-list {
+    list-style-type: none;
+    counter-reset: like-counter;
+}
+
+.like-history-list li {
+    position: relative;
+    margin: 5px 0;
+    padding-left: 20px;
+    color: #555;
+}
+
+.like-history-list li::before {
+    content: counter(like-counter) ". ";
+    counter-increment: like-counter;
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+}
+
+.comment-actions {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+}
+
+
+.like-count {
+    font-weight: bold;
+    padding: 3px;
+    margin: 3px;
+    background: white;
+    color: black;
+    border: 1px solid black;
+}
+
+.comment-form {
+    margin-top: 10px;
+}
+
+.comment-form textarea {
+    width: 100%;
+    height: 100px;
+    resize: vertical;
+}
+
+.comment-form button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+
+
+.custom-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.custom-label {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.custom-input,
+.custom-textarea {
+    width: 300px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+.custom-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.custom-button:hover {
+    background-color: #45a049;
+}
