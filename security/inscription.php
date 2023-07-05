@@ -1,5 +1,4 @@
 <?php
-require_once '../functions/db_connect.php';
 
 require_once '../vendor/phpmailer/phpmailer/src/PHPMailer.php';
 require_once '../vendor/phpmailer/phpmailer/src/SMTP.php';
@@ -8,6 +7,12 @@ require_once '../vendor/autoload.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+
+
+// HEADER
+
+include '../templates/header.php';
+
 
 // Validation des champs du formulaire
 $errors = [];
@@ -20,11 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'];
     $confirmPassword = $_POST['confirm_password'];
 
-    // Validation des champs ...
 
-
-    // Vérification de l'existence d'un compte avec le même nom d'utilisateur
-    $pdo = db_connect();
     // Vérification de l'existence d'un compte avec le même nom d'utilisateur
     $stmtUsername = $pdo->prepare("SELECT * FROM users WHERE username = :username");
     $stmtUsername->bindParam(':username', $username);
@@ -120,15 +121,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- CSS -->
     <link rel="stylesheet" href="../public/style.css">
+    <!-- JAVASCRIPT -->
+    <script src="../functions/validate_form.js" defer></script>
     <title>Inscription</title>
 </head>
 
 <body>
 
-    <!-- HEADER -->
-    <?php
-    include '../templates/header.php';
-    ?>
+
 
     <!-- FORM INSCRIPTION -->
 
@@ -148,8 +148,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <br>
             <div class="input-group">
                 <label for="username">Nom d'utilisateur :</label>
-                <input type="text" id="username" name="username" required class="input-field"
-                    value="<?php echo $username; ?>">
+                <input type="text" id="username" name="username" required class="input-field" value="<?php echo $username; ?>">
             </div>
             <div class="input-group">
                 <label for="email">Email :</label>

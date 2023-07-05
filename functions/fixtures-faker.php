@@ -16,116 +16,76 @@ function generateUsersFixtures($faker)
 {
     $usersFixtures = [];
     for ($i = 0; $i < 10; $i++) {
-        $username = $faker->userName;
-        $password = $faker->password;
-        $email = $faker->unique()->email;
-        $confirmationToken = $faker->uuid;
-        $role = $faker->randomElement(['ROLE_USER', 'ROLE_ADMIN', 'ROLE_MOD']);
-        $confirmed = $faker->randomElement([true, false]); // Valeur aléatoire pour la colonne confirmed
-
         $usersFixtures[] = [
-            'username' => $username,
-            'password' => $password,
-            'email' => $email,
-            'confirmation_token' => $confirmationToken,
-            'role' => $role,
-            'confirmed' => $confirmed
+            'username' => $faker->userName,
+            'password' => $faker->password,
+            'email' => $faker->unique()->email,
+            'confirmation_token' => $faker->uuid,
+            'role' => $faker->randomElement(['ROLE_USER', 'ROLE_ADMIN']),
+            'confirmed' => $faker->boolean()
         ];
     }
     return $usersFixtures;
 }
-
 
 // Fonction pour générer des fixtures pour la table articles
 function generateArticlesFixtures($faker)
 {
     $articlesFixtures = [];
     for ($i = 0; $i < 10; $i++) {
-        $title = $faker->sentence;
-        $content = $faker->paragraph;
-        $imagePath = $faker->imageUrl;
-        $authorId = $faker->numberBetween(1, 10);
-        $createdAt = $faker->dateTimeThisYear;
-
         $articlesFixtures[] = [
-            'title' => $title,
-            'content' => $content,
-            'image_path' => $imagePath,
-            'author_id' => $authorId,
-            'created_at' => $createdAt->format('Y-m-d H:i:s')
+            'title' => $faker->sentence,
+            'content' => $faker->paragraph,
+            'image_path' => $faker->imageUrl,
+            'author_id' => $faker->numberBetween(1, 10),
+            'created_at' => $faker->dateTimeThisYear->format('Y-m-d H:i:s')
         ];
     }
     return $articlesFixtures;
 }
 
-
+// Fonction pour générer des fixtures pour la table article_likes
 function generateArticlesLikesFixtures($faker)
 {
-    global $pdo;
     $articlesLikesFixtures = [];
-    $existingArticleIds = [];
-
-    // Récupérer les IDs existants dans la table articles
-    $stmt = $pdo->prepare("SELECT id FROM articles");
-    $stmt->execute();
-    $existingArticles = $stmt->fetchAll(PDO::FETCH_COLUMN);
-
-    foreach ($existingArticles as $id) {
-        $existingArticleIds[] = $id;
-    }
-
     for ($i = 0; $i < 10; $i++) {
-        $articleId = $faker->randomElement($existingArticleIds);
-        $userId = $faker->numberBetween(1, 10);
-        $createdAt = $faker->dateTimeBetween('-1 year', 'now')->format('Y-m-d H:i:s');
-
         $articlesLikesFixtures[] = [
-            'article_id' => $articleId,
-            'user_id' => $userId,
-            'created_at' => $createdAt
+            'article_id' => $faker->numberBetween(1, 10),
+            'user_id' => $faker->numberBetween(1, 10),
+            'created_at' => $faker->dateTimeBetween('-1 year', 'now')->format('Y-m-d H:i:s')
         ];
     }
     return $articlesLikesFixtures;
 }
-
 
 // Fonction pour générer des fixtures pour la table comments
 function generateCommentFixtures($faker)
 {
     $commentFixtures = [];
     for ($i = 0; $i < 10; $i++) {
-        $articleId = $faker->numberBetween(1, 10);
-        $userId = $faker->numberBetween(1, 10);
-        $content = $faker->paragraph;
-        $createdAt = $faker->dateTimeThisYear;
-
         $commentFixtures[] = [
-            'article_id' => $articleId,
-            'user_id' => $userId,
-            'content' => $content,
-            'created_at' => $createdAt->format('Y-m-d H:i:s')
+            'article_id' => $faker->numberBetween(1, 10),
+            'user_id' => $faker->numberBetween(1, 10),
+            'content' => $faker->paragraph,
+            'created_at' => $faker->dateTimeThisYear->format('Y-m-d H:i:s')
         ];
     }
     return $commentFixtures;
 }
 
+// Fonction pour générer des fixtures pour la table comment_likes
 function generateCommentLikesFixtures($faker)
 {
     $commentLikesFixtures = [];
     for ($i = 0; $i < 10; $i++) {
-        $commentId = $faker->numberBetween(1, 10);
-        $userId = $faker->numberBetween(1, 10);
-        $createdAt = $faker->dateTimeBetween('-1 year', 'now')->format('Y-m-d H:i:s');
-
         $commentLikesFixtures[] = [
-            'comment_id' => $commentId,
-            'user_id' => $userId,
-            'created_at' => $createdAt
+            'comment_id' => $faker->numberBetween(1, 10),
+            'user_id' => $faker->numberBetween(1, 10),
+            'created_at' => $faker->dateTimeBetween('-1 year', 'now')->format('Y-m-d H:i:s')
         ];
     }
     return $commentLikesFixtures;
 }
-
 
 // Fonction pour insérer les fixtures dans la base de données
 function insertFixtures($table, $fixtures)
@@ -134,7 +94,9 @@ function insertFixtures($table, $fixtures)
     $columns = implode(', ', array_keys($fixtures[0]));
     $placeholders = rtrim(str_repeat('?,', count($fixtures[0])), ',');
     $sql = "INSERT INTO $table ($columns) VALUES ($placeholders)";
+
     $stmt = $pdo->prepare($sql);
+
     foreach ($fixtures as $fixture) {
         $stmt->execute(array_values($fixture));
     }

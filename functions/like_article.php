@@ -1,4 +1,6 @@
 <?php
+
+
 // Inclure le fichier de connexion à la base de données
 require './db_connect.php';
 session_start();
@@ -24,10 +26,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['likeButton'])) {
 
         if (!$liked) {
             // Ajouter un like à l'article
-            $insert_like_sql = "INSERT INTO article_likes (article_id, user_id) VALUES (:article_id, :user_id)";
+            $insert_like_sql = "INSERT INTO article_likes (article_id, user_id, created_at) VALUES (:article_id, :user_id, :created_at)";
             $insert_like_stmt = $pdo->prepare($insert_like_sql);
             $insert_like_stmt->bindParam(':article_id', $liked_article_id);
             $insert_like_stmt->bindParam(':user_id', $user_id);
+            $insert_like_stmt->bindValue(':created_at', date('Y-m-d H:i:s'));
             $insert_like_stmt->execute();
 
             echo 'liked';

@@ -29,7 +29,6 @@
 
 
 
-    require_once '../functions/db_connect.php';
 
     // Récupération du token depuis l'URL
     $token = $_GET['token'];
@@ -38,8 +37,6 @@
     if (isset($_GET['username'])) {
         $username = $_GET['username'];
 
-        // Connexion à la base de données
-        $pdo = db_connect();
 
         $stmt = $pdo->prepare("UPDATE users SET confirmed = 1 WHERE username = ?");
         $stmt->execute([$username]);

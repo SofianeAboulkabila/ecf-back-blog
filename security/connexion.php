@@ -1,12 +1,9 @@
 <?php
 
-require  '../functions/db_connect.php';
+
+include '../templates/header.php';
 
 
-if (session_status() === PHP_SESSION_NONE && session_id() === '') {
-    // La session n'a pas été démarrée, appelez session_start()
-    session_start();
-}
 // Vérifiez si l'utilisateur est déjà connecté
 if (isset($_SESSION['user_id'])) {
     // Redirigez vers la page index.php
@@ -16,21 +13,13 @@ if (isset($_SESSION['user_id'])) {
 
 
 
-function verifyPassword($passwordInput, $passwordHash)
-{
-    if (password_verify($passwordInput, $passwordHash)) {
-        return true;
-    } else {
-        return false;
-    }
-}
 
 
 if (!empty($_POST) && !empty($_POST['username']) && !empty($_POST['password'])) {
-    $pdo = db_connect();
 
     $username = $_POST['username'];
     $passwordInput = $_POST['password'];
+    password_verify($passwordInput, $passwordHash);
 
     $req = $pdo->prepare('SELECT * FROM users WHERE username = :username');
     $req->bindParam(':username', $username);
@@ -72,11 +61,6 @@ if (!empty($_POST) && !empty($_POST['username']) && !empty($_POST['password'])) 
 
 <body>
 
-
-    <!-- HEADER -->
-    <?php
-    include '../templates/header.php';
-    ?>
 
     <!-- FORM CONNEXION -->
 

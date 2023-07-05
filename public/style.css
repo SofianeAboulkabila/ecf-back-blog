@@ -20,7 +20,7 @@ img {
 header {
     background-color: #494848;
     padding: 10px;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
 }
 
 .navbar {
@@ -98,7 +98,7 @@ header {
 .notice h2 {
     font-size: 30px;
     margin-bottom: 20px;
-    color: #ffffff;
+    color: #050505;
 }
 
 .notice p {
@@ -162,6 +162,7 @@ form {
     background: none;
     border: none;
     box-shadow: none;
+    display: flex;
 }
 
 
@@ -265,6 +266,47 @@ form h1 {
 
 /* ARTRICLES BLOG */
 
+/* BARRE DE RECHERCHE */
+
+.search-container {
+    display: flex;
+    align-items: center;
+    margin: 20px;
+    justify-content: center;
+}
+
+.search-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    padding: 10px;
+    margin: 20px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+#searchInput {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 5px;
+}
+
+#searchButton {
+    padding: 8px 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#searchButton:hover {
+    background-color: #45a049;
+}
+
 /* CSS pour les articles sous forme de cartes */
 
 .article-container {
@@ -275,36 +317,40 @@ form h1 {
 }
 
 .article-card {
-    border: 3px solid #ccc;
-    padding: 20px;
+    background-color: #383636;
+    padding: 15px;
     margin: 20px;
+    height: 100%;
     width: 350px;
     transition: all 0.3s ease-in;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
 }
 
 .article-card:hover {
-    box-shadow: 1px 1px 20px 2px black;
-    transform: scale(1.015);
-    transition: all 0.3s ease-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transform: scale(1.02);
 }
-
 
 h2 {
     text-align: center;
     font-size: 24px;
     padding: 10px;
-    border: 1px solid #000;
+    border: 2px solid #000;
+    background-color: #f5f5f5;
 }
 
 .article-card p {
-    font-size: 18px;
-    line-height: 1.6;
-    text-align: center;
-    padding: 20px;
-    margin: 20px;
-    background: #a39e9e;
-    color: gainsboro;
-    border-bottom: 1px solid black;
+    font-size: 16px;
+    line-height: 1.4;
+    text-align: justify;
+    padding: 10px;
+    margin: 10px;
+    background: #d1d1d1;
+    color: #000000;
+    border-bottom: 1px solid #ddd;
 }
 
 .article-card p:first-child {
@@ -313,12 +359,23 @@ h2 {
 
 .article-card p:last-child {
     margin-bottom: 0;
+    border-bottom: none;
 }
 
-.article-card img {
-    max-width: 100%;
+.article-card .card-image {
+    position: relative;
+    overflow: hidden;
+}
+
+.article-card .card-image img {
+    display: block;
+    width: 100%;
     height: auto;
-    margin-bottom: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.article-card:hover .card-image img {
+    transform: scale(1.05);
 }
 
 .comment-container {
@@ -350,7 +407,6 @@ h2 {
     margin-bottom: 5px;
 }
 
-
 .article-actions {
     margin-top: 10px;
 }
@@ -363,16 +419,19 @@ h2 {
     border: none;
     color: #fff;
     cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
 }
-
 
 .like-comment-button {
     padding: 5px 10px;
     margin-right: 5px;
     border: none;
-    background: #186703;
+    background-color: #186703;
     color: #fff;
     cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
 }
 
 .liked-button,
@@ -382,22 +441,37 @@ h2 {
     border: none;
     background-color: #ff7b08;
     cursor: pointer;
-    color: aliceblue;
+    color: #fff;
+    border-radius: 4px;
+    font-size: 14px;
 }
 
 .like-history-button {
     background-color: #ae2b2b;
-
     margin-top: 10px;
+    font-size: 14px;
 }
 
+a.connect-info {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #2a9e0a;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    margin: 20px;
+    color: #e9e7e7;
+    font-size: 1.2em;
+}
+
+
 .comment-button {
-    background-color: rgb(20, 125, 125);
-    margin-left: 20px;
+    background-color: #147d7d;
+    margin-left: 10px;
 }
 
 .like-button {
-    background-color: rgb(11, 106, 11);
+    background-color: #0b6a0b;
 }
 
 .like-button:hover,
@@ -410,16 +484,17 @@ h2 {
     margin: 10px 0;
     font-size: 14px;
     color: #333;
-    font-weight: bolder;
-}
-
-.comment p:first-child {
     font-weight: bold;
 }
 
-.comment p:nth-child(2) {
-    color: #fff;
+.comment p:first-child {
+    font-weight: bolder;
 }
+
+.comment p:nth-child(2) {
+    color: #d73535;
+}
+
 
 .like-history-list {
     list-style-type: none;
@@ -451,7 +526,7 @@ h2 {
 .like-count {
     font-weight: bold;
     padding: 3px;
-    margin: 3px;
+    margin: auto 0;
     background: white;
     color: black;
     border: 1px solid black;
@@ -513,4 +588,50 @@ h2 {
 
 .custom-button:hover {
     background-color: #45a049;
+}
+
+/* ADD ARTICLE FORM */
+
+.add-article-form {
+    max-width: 500px;
+    margin: 100px auto;
+    padding: 50px;
+    border: 2px solid rgba(255, 0, 0, 0.565);
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-input,
+.form-textarea {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.form-textarea {
+    height: 200px;
+}
+
+.form-button {
+    display: inline-block;
+    padding: 8px 16px;
+    font-size: 16px;
+    background-color: #186703;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.form-button:hover {
+    background-color: #0f4702;
 }

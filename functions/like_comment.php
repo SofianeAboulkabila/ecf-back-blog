@@ -6,11 +6,7 @@ require './db_connect.php';
 session_start();
 
 // Vérifier si l'utilisateur est connecté
-if (!isset($_SESSION['user_id'])) {
-    // Gérer le cas où l'utilisateur n'est pas connecté
-    echo 'not_logged_in';
-    exit;
-}
+$user_id = $_SESSION['user_id'] ?? null;
 
 // Vérifier si le formulaire a été soumis
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -31,10 +27,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if (!$liked) {
             // Ajouter un like au commentaire
-            $insert_like_sql = "INSERT INTO comment_likes (comment_id, user_id) VALUES (:comment_id, :user_id)";
+            $insert_like_sql = "INSERT INTO comment_likes (comment_id, user_id, created_at) VALUES (:comment_id, :user_id, :created_at)";
             $insert_like_stmt = $pdo->prepare($insert_like_sql);
             $insert_like_stmt->bindParam(':comment_id', $comment_id);
             $insert_like_stmt->bindParam(':user_id', $user_id);
+            $insert_like_stmt->bindValue(':created_at', date('Y-m-d H:i:s'));
             $insert_like_stmt->execute();
 
             echo 'liked';
